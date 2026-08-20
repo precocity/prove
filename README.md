@@ -48,21 +48,67 @@ is only one implementation.
 
 ## Install
 
+Run this from the root of the project you want to configure:
+
 ```bash
-npx prove-method install          # once published
-# or, from a local checkout:
-node PROVE/tools/install.js --dir /path/to/your/project
+npx --yes prove-method install
 ```
 
-The installer asks which AI tools you use (GitHub Copilot, Claude Code, Cursor,
-generic AGENTS.md) and which agent roles you want, then copies the framework
-into `.prove/` in your project and wires up the tool-specific instruction
-files.
+`npx` downloads the public `prove-method` package temporarily and runs its
+installer. Users do **not** clone this GitHub repository, install a global
+package, or need access to the private source repository. They only need
+Node.js 18+ and internet access to npm. The `--yes` flag accepts npx's prompt
+to download the package; it is useful for scripts and can be omitted for an
+interactive confirmation.
 
-Then open your project in your AI tool and say:
+The installer asks which AI tools you use (GitHub Copilot, Claude Code, Cursor,
+or generic `AGENTS.md`) and which agent roles you want. It then creates this
+inside the current project:
+
+```text
+.prove/                 PROVE agents, docs, and Python runner
+prove.config.toml       project-specific configuration template
+.github/...             Copilot instructions, if selected
+CLAUDE.md               Claude Code instructions, if selected
+.cursor/...             Cursor rules, if selected
+AGENTS.md               generic agent instructions, if selected
+```
+
+The installer does not modify your production logic or activate anything. It
+only adds the PROVE scaffolding and tool instructions. It also preserves an
+existing `prove.config.toml` and updates only its own marked instruction block
+when run again.
+
+After installation, open the project in your AI tool and say:
 
 > Read `.prove/docs/ONBOARDING.md` and interview me to configure PROVE for
 > this project.
+
+The AI assistant will ask about your engine, artifact format, expert reviewer,
+corpus, regression command, and activation allowlist. After onboarding, run:
+
+```bash
+python .prove/runner check
+```
+
+Python 3.11+ is needed for the runner and is not needed merely to install the
+scaffolding.
+
+For maintainers publishing a release from the private source checkout:
+
+```bash
+npm login
+npm publish
+```
+
+The package name is `prove-method`. Publishing requires npm ownership of that
+name; users only run the `npx` command above.
+
+For local development without npm, run the installer directly:
+
+```bash
+node tools/install.js --dir /path/to/your/project
+```
 
 ## Requirements
 

@@ -1,8 +1,24 @@
 {
   "name": "prove-method",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PROVE — Propose, Run, Observe, Verify, Enable. An agentic workflow for shipping expert-reviewed logic without review/serving skew.",
-  "private": true,
+  "author": "Robert Lewis <robertlewis@precocityllc.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/precocity/prove.git"
+  },
+  "homepage": "https://github.com/precocity/prove#readme",
+  "keywords": [
+    "agents",
+    "ai",
+    "workflow",
+    "rules-engine",
+    "governance",
+    "expert-review"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "prove-method": "tools/install.js"
   },
