@@ -1,0 +1,17 @@
+{
+  "name": "prove-method",
+  "version": "0.1.0",
+  "description": "PROVE — Propose, Run, Observe, Verify, Enable. An agentic workflow for shipping expert-reviewed logic without review/serving skew.",
+  "private": true,
+  "bin": {
+    "prove-method": "tools/install.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "src",
+    "tools",
+    "README.md"
+  ]
+}
